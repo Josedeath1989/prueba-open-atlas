@@ -560,20 +560,6 @@ prueba/
 ✅ **Type Safety:** Validación de tipos JavaScript  
 ✅ **Credenciales:** Separadas en database.xml (no en código)  
 
----
-
-## 📈 Estadísticas del Proyecto
-
-| Métrica | Cantidad |
-|---------|----------|
-| **Archivos PHP** | 8 |
-| **Componentes React** | 6 |
-| **Endpoints API** | 8 |
-| **Tablas Database** | 4 |
-| **Líneas CSS** | 1000+ |
-| **Documentos** | 7 |
-
----
 
 ## 🚀 Mejoras Futuras (Roadmap)
 
