@@ -529,7 +529,7 @@ prueba/
 │   ├── index.html
 │   ├── package.json
 │   ├── vite.config.js
-│   └── .env
+│   
 └── 
 ```
 
