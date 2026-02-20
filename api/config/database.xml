@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <host>localhost</host>
+    <dbname>gestion_proyectos</dbname>
+    <username>root</username>
+    <password></password>
+</database>

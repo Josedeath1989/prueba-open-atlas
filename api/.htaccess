@@ -1,0 +1,62 @@
+# =========================
+# ACTIVAR REWRITE ENGINE
+# =========================
+RewriteEngine On
+RewriteBase /prueba/api/
+
+# =========================
+# DESACTIVAR LISTADO DE DIRECTORIOS
+# =========================
+Options -Indexes
+
+# =========================
+# PROTEGER ARCHIVOS SENSIBLES
+# =========================
+
+# Bloquear acceso a XML
+<FilesMatch "\.(xml)$">
+    Require all denied
+</FilesMatch>
+
+# Bloquear acceso a archivos de configuración
+<FilesMatch "(database\.php|\.env)">
+    Require all denied
+</FilesMatch>
+
+# Bloquear acceso a carpetas internas
+RewriteRule ^(config|core|models)/ - [F,L]
+
+# =========================
+# BLOQUEAR MÉTODOS HTTP NO PERMITIDOS
+# =========================
+RewriteCond %{REQUEST_METHOD} ^(TRACE|DELETE|TRACK) [NC]
+RewriteRule .* - [F]
+
+# =========================
+# VALIDAR RUTAS LIMPIAS
+# =========================
+
+# Si no es archivo físico
+RewriteCond %{REQUEST_FILENAME} !-f
+# Si no es directorio físico
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+# =========================
+# HEADERS DE SEGURIDAD
+# =========================
+
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "no-referrer-when-downgrade"
+    Header set Content-Security-Policy "default-src 'self'"
+</IfModule>
+
+# =========================
+# MANEJO DE ERRORES PERSONALIZADO
+# =========================
+ErrorDocument 403 /prueba/api/index.php
+ErrorDocument 404 /prueba/api/index.php
+ErrorDocument 500 /prueba/api/index.php
